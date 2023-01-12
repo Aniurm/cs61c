@@ -1,4 +1,5 @@
-1.
+1. set args [arglist]: specify arglist for next run
+   set args:           specify empty argument list
 2.
 3.
 4.
