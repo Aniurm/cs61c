@@ -11,6 +11,7 @@
 /*
  * Standard IO and file routines.
  */
+#define _GNU_SOURCE
 #include <stdio.h>
 
 /*
@@ -27,6 +28,8 @@
  * String utility routines.
  */
 #include <string.h>
+
+#include <sys/types.h>
 
 /*
  * This hash table stores the dictionary.
@@ -70,7 +73,13 @@ int main(int argc, char **argv) {
  */
 unsigned int stringHash(void *s) {
   char *string = (char *)s;
-  // -- TODO --
+  unsigned int hashCode = 0;
+  int length = strlen(string);
+  int i;
+  for (i = 0; i < length; i++) {
+    hashCode = hashCode * 31 + string[i];
+  }
+  return hashCode;
 }
 
 /*
@@ -80,7 +89,18 @@ unsigned int stringHash(void *s) {
 int stringEquals(void *s1, void *s2) {
   char *string1 = (char *)s1;
   char *string2 = (char *)s2;
-  // -- TODO --
+  int len1 = strlen(string1);
+  int len2 = strlen(string2);
+  if (len1 != len2) {
+    return 0;
+  }
+  int i;
+  for (i = 0; i < len1; i++) {
+    if (string1[i] != string2[i]) {
+      return 0;
+    }
+  }
+  return 1;
 }
 
 /*
@@ -100,7 +120,19 @@ int stringEquals(void *s1, void *s2) {
  * arbitrarily long dictionary chacaters.
  */
 void readDictionary(char *dictName) {
-  // -- TODO --
+  FILE *fp = fopen(dictName, "r");
+  // File does not exist
+  if (fp == NULL) {
+    fprintf(stderr, "The dictionary named '%s' does not exist.\n", dictName);
+    exit(1);
+  }
+  char *line = NULL;
+  size_t len = 0;
+  ssize_t read;
+  while ((read = getline(&line, &len, fp)) != -1) {
+    insertData(dictionary, (void *)line, (void *)line);
+  }
+  free(line);
 }
 
 /*
@@ -124,6 +156,69 @@ void readDictionary(char *dictName) {
  * numbers and punctuation) which are longer than 60 characters. Again, for the 
  * final 20% of your grade, you cannot assume words have a bounded length.
  */
+
+void processWord(char* word) {
+  int isFound = false;
+  // store a copy of the word
+  char* wordCopy = (char *)malloc(strlen(word) + 1);
+  strcpy(wordCopy, word);
+  
+  // Check word itself
+  if (findData(dictionary, (void *)word) != NULL) {
+    isFound = true;
+  }
+
+  if (!isFound) {
+    // convert the first letter to lowercase
+    word[0] = tolower(word[0]);
+    // Check word with first letter converted to lowercase
+    if (findData(dictionary, (void *)word) != NULL) {
+      isFound = true;
+    }
+  }
+
+  if (!isFound) {
+    // convert the whole word to lowercase
+    int i;
+    for (i = 0; i < strlen(word); i++) {
+      word[i] = tolower(word[i]);
+    }
+    // Check word with all letters converted to lowercase
+    if (findData(dictionary, (void *)word) != NULL) {
+      isFound = true;
+    }
+  }
+  
+  printf("%s", wordCopy);
+  if (!isFound) {
+    printf(" [sic]");
+  }
+}
+
 void processInput() {
-  // -- TODO --
+  char c;
+  char* word = NULL;
+  int wordLength = 0;
+  int wordCapacity = 0;
+
+  while ((c = getchar()) != EOF) {
+    if (isalpha(c)) {
+      // get the complete word, without assuming that words have a bounded length
+      if (wordLength == wordCapacity) {
+        wordCapacity = wordCapacity * 2 + 1;
+        word = (char *)realloc(word, wordCapacity * sizeof(char));
+      }
+      word[wordLength++] = c;
+    } else {
+      // Process alphabet characters
+      if (wordLength > 0) {
+        // Append null terminator to the end of the word
+        word[wordLength] = 0;
+        processWord(word);
+        wordLength = 0;
+      }
+      // Output non-alphabetic characters to stdout
+      putchar(c);
+    }
+  }
 }

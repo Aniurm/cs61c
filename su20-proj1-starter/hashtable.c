@@ -20,6 +20,17 @@ HashTable *createHashTable(int size, unsigned int (*hashFunction)(void *),
 }
 
 /*
+ * This creates a new hash bucket struct with the given key and data.
+ */
+PtrToBucket createBucket(void *key, void *data) {
+  PtrToBucket result = malloc(sizeof(struct HashBucket));
+  result->key = key;
+  result->data = data;
+  result->next = NULL;
+  return result;
+}
+
+/*
  * This inserts a key/data pair into a hash table.  To use this
  * to store strings, simply cast the char * to a void * (e.g., to store
  * the string referred to by the declaration char *string, you would
@@ -28,11 +39,14 @@ HashTable *createHashTable(int size, unsigned int (*hashFunction)(void *),
  * we can use the string as both the key and data.
  */
 void insertData(HashTable *table, void *key, void *data) {
-  // -- TODO --
-  // HINT:
-  // 1. Find the right hash bucket location with table->hashFunction.
-  // 2. Allocate a new hash bucket struct.
-  // 3. Append to the linked list or create it if it does not yet exist. 
+  // Find the right hash bucket location with table->hashFunction.
+  int location = table->hashFunction(key) % table->size;
+  // Allocate a new hash bucket struct.
+  PtrToBucket newBucket = createBucket(key, data);
+  // Append to the linked list.
+  PtrToBucket oldHead = table->data[location];
+  newBucket->next = oldHead;
+  table->data[location] = newBucket;
 }
 
 /*
@@ -40,8 +54,16 @@ void insertData(HashTable *table, void *key, void *data) {
  * It returns NULL if the key is not found. 
  */
 void *findData(HashTable *table, void *key) {
-  // -- TODO --
-  // HINT:
-  // 1. Find the right hash bucket with table->hashFunction.
-  // 2. Walk the linked list and check for equality with table->equalFunction.
+  // Find the right hash bucket with table->hashFunction.
+  int location = table->hashFunction(key) % table->size;
+  // Walk the linked list and check for equality with table->equalFunction.
+  PtrToBucket cursor = table->data[location];
+  while (cursor != NULL) {
+    if (table->equalFunction(cursor->key, key)) {
+      return cursor->data;
+    } else {
+      cursor = cursor->next;
+    }
+  }
+  return NULL;
 }
