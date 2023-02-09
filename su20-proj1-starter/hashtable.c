@@ -19,15 +19,8 @@ HashTable *createHashTable(int size, unsigned int (*hashFunction)(void *),
   return newTable;
 }
 
-/*
- * This creates a new hash bucket struct with the given key and data.
- */
-PtrToBucket createBucket(void *key, void *data) {
-  PtrToBucket result = malloc(sizeof(struct HashBucket));
-  result->key = key;
-  result->data = data;
-  result->next = NULL;
-  return result;
+int getLocation(HashTable *table, void *key) {
+  return table->hashFunction(key) % table->size;
 }
 
 /*
@@ -40,13 +33,14 @@ PtrToBucket createBucket(void *key, void *data) {
  */
 void insertData(HashTable *table, void *key, void *data) {
   // Find the right hash bucket location with table->hashFunction.
-  int location = table->hashFunction(key) % table->size;
+  int location = getLocation(table, key);
   // Allocate a new hash bucket struct.
-  PtrToBucket newBucket = createBucket(key, data);
-  // Append to the linked list.
-  PtrToBucket oldHead = table->data[location];
-  newBucket->next = oldHead;
-  table->data[location] = newBucket;
+  PtrToBucket newBucket = malloc(sizeof(struct HashBucket));
+  newBucket->key = key;
+  newBucket->data = data;
+  // Append to the linked list or create it if it does not yet exist. 
+  newBucket->next = (table->data)[location];
+  (table->data)[location] = newBucket;
 }
 
 /*
@@ -55,15 +49,13 @@ void insertData(HashTable *table, void *key, void *data) {
  */
 void *findData(HashTable *table, void *key) {
   // Find the right hash bucket with table->hashFunction.
-  int location = table->hashFunction(key) % table->size;
+  PtrToBucket cursor = table->data[getLocation(table, key)];
   // Walk the linked list and check for equality with table->equalFunction.
-  PtrToBucket cursor = table->data[location];
   while (cursor != NULL) {
-    if (table->equalFunction(cursor->key, key)) {
+    if (cursor->key == key) {
       return cursor->data;
-    } else {
-      cursor = cursor->next;
     }
+    cursor = cursor->next;
   }
   return NULL;
 }

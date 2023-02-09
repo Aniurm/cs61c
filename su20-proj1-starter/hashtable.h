@@ -13,14 +13,6 @@
 #define NULL ((void *)0)
 #endif
 
-#ifndef true
-#define true 1
-#endif
-
-#ifndef false
-#define false 0
-#endif
-
 /*
  * This header file defines an interface to a generic chained hash table. 
  * It stores void * data and uses two functions, int (*) (void *)
@@ -34,7 +26,6 @@ struct HashBucket {
 };
 
 typedef struct HashBucket* PtrToBucket;
-
 typedef struct HashTable {
   int size;
   PtrToBucket* data;
