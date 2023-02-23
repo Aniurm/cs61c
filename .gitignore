@@ -255,3 +255,6 @@ server_basic server_process
 
 philspel
 testOutput
+
+# ignore .vscode folder
+.vscode

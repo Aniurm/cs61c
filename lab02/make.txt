@@ -1,7 +1,14 @@
-1.
-2.
-3.
-4.
-5.
-6.
-7.
+Which target is part of a rule that deletes all the compiled programs?
+clean
+Which target is part of a rule that makes all the compiled programs?
+all
+Which compiler is currently being used?
+gcc
+What C standard are we currently using?
+c99
+How would we reference a variable FOO in a makefile?
+$(FOO)
+What operating system does the term “Darwin” represent?
+Darwin is the core Unix operating system of macOS iOS, watchOS, tvOS, iPadOS and bridgeOS
+What line creates the lfsr program from its object files? (Give its line number.)
+line 32
