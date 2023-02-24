@@ -4,13 +4,7 @@ LD=gcc
 CFLAGS=-ggdb -Wall -std=c99
 LDFLAGS=
 
-ifeq ($(UNAME_S), Darwin)
-    MEMCHECK=valgrind --tool=memcheck --leak-check=full --track-origins=yes --dsymutil=yes --suppressions=osx_vector.supp
-endif
-
-ifeq ($(UNAME_S), Linux)
-    MEMCHECK=valgrind --tool=memcheck --leak-check=full --track-origins=yes
-endif
+MEMCHECK = leaks --atExit -- 
 
 BIT_OPS_OBJS = bit_ops.o test_bit_ops.o
 BIT_OPS_PROG = bit_ops
@@ -30,6 +24,9 @@ $(BIT_OPS_PROG): $(BIT_OPS_OBJS)
 
 $(LFSR_PROG): $(LFSR_OBJS)
 	$(CC) $(CFLAGS) -g -o $(LFSR_PROG) $(LFSR_OBJS) $(LDFLAGS)
+
+$(VECTOR_PROG): $(VECTOR_OBJS)
+	$(CC) $(CFLAGS) -g -o $(VECTOR_PROG) $(VECTOR_OBJS) $(LDFLAGS)
 
 lfsr.c: lfsr.h
 test_lfsr.c: lfsr.h
