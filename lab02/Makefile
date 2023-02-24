@@ -15,7 +15,7 @@ endif
 BIT_OPS_OBJS = bit_ops.o test_bit_ops.o
 BIT_OPS_PROG = bit_ops
 
-LFSR_OBJS = lfsr.o test_lfsr.o
+LFSR_OBJS = lfsr.o test_lfsr.o bit_ops.o
 LFSR_PROG = lfsr
 
 VECTOR_OBJS=vector.o vector_test.o
