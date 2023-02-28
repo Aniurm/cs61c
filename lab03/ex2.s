@@ -26,7 +26,7 @@ main:
     la s1, source
     la s2, dest
 loop:
-    slli s3, t0, 2
+    slli s3, t0, 2  # s3 = t0 * 4
     add t1, s1, s3
     lw t2, 0(t1)
     beq t2, x0, exit
