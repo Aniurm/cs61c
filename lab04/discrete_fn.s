@@ -76,7 +76,14 @@ main:
 # a1 is the address of the "output" array (defined above).
 # Think: why might having a1 be useful?
 f:
-    # YOUR CODE GOES HERE!
+    # Add 3 to a0
+    addi a0, a0, 3
+    # Multiply a0 by 4
+    slli a0, a0, 2
+    # Add a0 to a1
+    add a1, a1, a0
+    # Load the value at a1 into a0
+    lw a0, 0(a1)
 
     jr ra               # Always remember to jr ra after your function!
 
