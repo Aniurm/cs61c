@@ -155,10 +155,30 @@ end TCL_Generic;
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="circuitnamedbox" val="true"/>
     <a name="circuitvhdlpath" val=""/>
-    <wire from="(610,220)" to="(630,220)"/>
-    <wire from="(610,290)" to="(630,290)"/>
-    <wire from="(210,220)" to="(230,220)"/>
-    <comp lib="0" loc="(210,220)" name="Pin">
+    <wire from="(400,200)" to="(490,200)"/>
+    <wire from="(400,300)" to="(490,300)"/>
+    <wire from="(400,310)" to="(410,310)"/>
+    <wire from="(410,240)" to="(410,310)"/>
+    <wire from="(400,290)" to="(460,290)"/>
+    <wire from="(410,240)" to="(490,240)"/>
+    <wire from="(410,310)" to="(490,310)"/>
+    <wire from="(350,300)" to="(380,300)"/>
+    <wire from="(510,300)" to="(590,300)"/>
+    <wire from="(400,200)" to="(400,290)"/>
+    <wire from="(540,220)" to="(630,220)"/>
+    <comp lib="0" loc="(380,300)" name="Splitter">
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="8"/>
+      <a name="appear" val="center"/>
+      <a name="bit0" val="2"/>
+      <a name="bit2" val="1"/>
+      <a name="bit3" val="1"/>
+      <a name="bit4" val="1"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="0"/>
+    </comp>
+    <comp lib="0" loc="(350,300)" name="Pin">
       <a name="width" val="8"/>
       <a name="label" val="In1"/>
     </comp>
@@ -168,15 +188,27 @@ end TCL_Generic;
       <a name="label" val="Out1"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(630,290)" name="Pin">
+    <comp lib="1" loc="(540,220)" name="AND Gate"/>
+    <comp lib="0" loc="(510,300)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="8"/>
+      <a name="appear" val="center"/>
+      <a name="bit0" val="2"/>
+      <a name="bit2" val="1"/>
+      <a name="bit3" val="1"/>
+      <a name="bit4" val="1"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="0"/>
+    </comp>
+    <comp lib="0" loc="(590,300)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="width" val="8"/>
       <a name="label" val="Out2"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="8" loc="(414,131)" name="Text">
-      <a name="text" val="PUT CIRCUITRY HERE"/>
-    </comp>
+    <comp lib="1" loc="(490,290)" name="NOT Gate"/>
   </circuit>
 </project>
