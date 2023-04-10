@@ -130,12 +130,11 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
       <text fill="#404040" font-family="Dialog" font-size="12" text-anchor="start" x="46" y="175">B</text>
       <text fill="#404040" font-family="Dialog" font-size="12" text-anchor="start" x="70" y="165">ALUSel</text>
       <text fill="#404040" font-family="Dialog" font-size="12" text-anchor="end" x="114" y="114">Result</text>
-      <circ-port height="10" pin="1180,240" width="10" x="115" y="105"/>
       <circ-port height="8" pin="200,310" width="8" x="86" y="176"/>
+      <circ-port height="10" pin="1180,240" width="10" x="115" y="105"/>
       <circ-port height="8" pin="200,160" width="8" x="36" y="56"/>
       <circ-port height="8" pin="200,250" width="8" x="36" y="166"/>
       <polygon fill="none" points="40,20 120,70 120,160 40,210 40,130 60,115 40,100" stroke="#000000" stroke-width="2"/>
-      <circ-port height="10" pin="200,540" width="10" x="85" y="185"/>
       <circ-anchor facing="east" height="6" width="6" x="117" y="107"/>
     </appear>
     <wire from="(740,180)" to="(740,190)"/>
@@ -215,7 +214,6 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
     <wire from="(400,220)" to="(460,220)"/>
     <wire from="(680,350)" to="(730,350)"/>
     <wire from="(770,560)" to="(820,560)"/>
-    <wire from="(820,650)" to="(820,660)"/>
     <wire from="(400,630)" to="(450,630)"/>
     <wire from="(220,330)" to="(220,340)"/>
     <wire from="(410,120)" to="(410,130)"/>
@@ -234,7 +232,6 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
     <wire from="(420,670)" to="(450,670)"/>
     <wire from="(610,870)" to="(820,870)"/>
     <wire from="(1160,310)" to="(1360,310)"/>
-    <wire from="(200,540)" to="(220,540)"/>
     <wire from="(90,340)" to="(220,340)"/>
     <wire from="(90,100)" to="(220,100)"/>
     <comp lib="0" loc="(1180,240)" name="Pin">
@@ -527,14 +524,6 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
     <comp lib="0" loc="(830,120)" name="Tunnel">
       <a name="label" val="slt0"/>
     </comp>
-    <comp lib="0" loc="(200,540)" name="Pin">
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(220,540)" name="Tunnel">
-      <a name="width" val="32"/>
-      <a name="label" val="result"/>
-    </comp>
     <comp lib="3" loc="(780,200)" name="Divider">
       <a name="width" val="32"/>
     </comp>
@@ -733,19 +722,19 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
       <a name="width" val="32"/>
       <a name="label" val="B"/>
     </comp>
-    <comp lib="0" loc="(820,650)" name="Tunnel">
-      <a name="width" val="32"/>
-      <a name="label" val="besl"/>
-    </comp>
     <comp lib="0" loc="(670,880)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="width" val="32"/>
-      <a name="label" val="besl"/>
+      <a name="label" val="bsel"/>
     </comp>
     <comp lib="0" loc="(610,870)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="width" val="32"/>
       <a name="label" val="sub0"/>
+    </comp>
+    <comp lib="0" loc="(820,650)" name="Tunnel">
+      <a name="width" val="32"/>
+      <a name="label" val="bsel"/>
     </comp>
   </circuit>
 </project>
