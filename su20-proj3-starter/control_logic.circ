@@ -166,10 +166,10 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
       <text fill="#404040" font-family="Dialog" font-size="12" text-anchor="end" x="1132" y="49">ASel</text>
       <text fill="#404040" font-family="Dialog" font-size="12" text-anchor="end" x="1182" y="49">BSel</text>
       <circ-port height="10" pin="670,210" width="10" x="1165" y="25"/>
-      <circ-port height="10" pin="420,210" width="10" x="495" y="25"/>
       <circ-port height="10" pin="620,210" width="10" x="1115" y="25"/>
-      <circ-port height="10" pin="500,210" width="10" x="575" y="25"/>
       <circ-port height="10" pin="570,210" width="10" x="925" y="25"/>
+      <circ-port height="10" pin="500,210" width="10" x="575" y="25"/>
+      <circ-port height="10" pin="420,210" width="10" x="495" y="25"/>
       <circ-port height="10" pin="350,210" width="10" x="55" y="25"/>
       <circ-port height="8" pin="250,210" width="8" x="1006" y="26"/>
       <circ-port height="8" pin="200,210" width="8" x="966" y="26"/>
@@ -505,9 +505,6 @@ This file is intended to be loaded by Logisim-evolution (https://github.com/reds
     <wire from="(1830,110)" to="(1920,110)"/>
     <wire from="(1210,550)" to="(1230,550)"/>
     <wire from="(640,230)" to="(650,230)"/>
-    <comp lib="5" loc="(562,43)" name="Text">
-      <a name="text" val="DON'T CHANGE THE LOCATIONS OF THE INPUTS AND OUTPUTS!"/>
-    </comp>
     <comp lib="0" loc="(130,230)" name="Tunnel">
       <a name="facing" val="north"/>
       <a name="width" val="32"/>
